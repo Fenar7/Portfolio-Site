@@ -21,3 +21,39 @@ export default function Shapes() {
         </div>
     );
 }
+
+function Geometries() {
+    const geometries = [{
+        position: [0,0,0],
+        r: 0.3,
+        geometry: new THREE.IcosahedronGeometry(3), //gem
+    },   
+    ];
+
+    const materials = [
+        new THREE.MeshNormalMaterial()
+    ]
+
+    //pass these arrays into another
+}
+
+function Geometry({r, position, geometry, materials}){
+    const meshRef = useRef()
+    const [visible, setVisible] = useState(false)
+
+    const startingMaterial = getRandomMaterial()
+
+    function getRandomMaterial(){
+        return gsap.utils.random(materials)
+    }
+
+    function handleClick(e){
+        const mesh = e.object;
+
+        gsap.to(mesh.rotation,{
+            x: '+=${gsap.utils.random(0,2)}',
+            y: '+=${gsap.utils.random(0,2)}',
+            z: '+=${gsap.utils.random(0,2)}',
+        })
+    }
+}
