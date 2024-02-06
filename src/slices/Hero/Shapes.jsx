@@ -35,6 +35,15 @@ function Geometries() {
     ]
 
     //pass these arrays into another
+    return geometries.map(({postion, r, geometry}) => (
+        <Geometry
+            key={JSON.stringify(postion)}
+            position={postion.map((p) => p * 2)}
+            geometry={geometry}
+            materials={materials}
+            r={r}
+        />
+    ))
 }
 
 function Geometry({r, position, geometry, materials}){
@@ -54,6 +63,34 @@ function Geometry({r, position, geometry, materials}){
             x: '+=${gsap.utils.random(0,2)}',
             y: '+=${gsap.utils.random(0,2)}',
             z: '+=${gsap.utils.random(0,2)}',
+            duration: 1.3,
+            ease: "elastic.out(1,0.3)",
+            yoyo:true,
         })
+        mesh.material = getRandomMaterial();
+
     }
+
+    const handlePointerOver = () =>{
+        document.body.sytle.cursor = "pointer"
+    }
+
+    const handlePointerOut = () =>{
+        document.body.sytle.cursor = "default"
+    }
+
+    return(
+        <group position={postion} ref={meshRef}>
+            <Float speed={5 * r} rotationIntensity={6 * r} floatIntensity={5 * r}>
+                <mesh
+                    geometry={geometry}
+                    onClick={handleClick}
+                    onPointerOver={handlePointerOver}
+                    onPointerOut={handlePointerOut}
+                    visible={visible}
+                    material={startingMaterial}
+                />
+            </Float>
+        </group>
+    )
 }
