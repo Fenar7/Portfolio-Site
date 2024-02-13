@@ -32,6 +32,7 @@ function Geometries() {
 
     const materials = [
         new THREE.MeshNormalMaterial()
+        new THREE.MeshNormalMaterial()
     ]
 
     //pass these arrays into another
