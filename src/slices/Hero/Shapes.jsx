@@ -32,7 +32,6 @@ function Geometries() {
 
     const materials = [
         new THREE.MeshNormalMaterial()
-        new THREE.MeshNormalMaterial()
     ]
 
     //pass these arrays into another
@@ -83,6 +82,15 @@ function Geometry({r, position, geometry, materials}){
     return(
         <group position={postion} ref={meshRef}>
             <Float speed={5 * r} rotationIntensity={6 * r} floatIntensity={5 * r}>
+                <mesh
+                    geometry={geometry}
+                    onClick={handleClick}
+                    onPointerOver={handlePointerOver}
+                    onPointerOut={handlePointerOut}
+                    visible={visible}
+                    material={startingMaterial}
+                />
+
                 <mesh
                     geometry={geometry}
                     onClick={handleClick}
